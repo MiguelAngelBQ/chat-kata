@@ -3,6 +3,8 @@ package chat.kata
 
 class ChatService {
 	
+	
+	private Collection<ChatMessage> messages=new ArrayList<ChatMessage>();
 	/**
 	 * Collects chat messages in the provided collection
 	 * 
@@ -12,7 +14,14 @@ class ChatService {
 	 * @return the sequence of the last message collected.
 	 */
 	Integer collectChatMessages(Collection<ChatMessage> collector, Integer fromSeq = null){
-		//TODO: implement me
+		int currentmessage= fromSeq != null ? fromSeq+1 : 0;
+		
+		while(currentmessage < messages.size()){
+			collector.add(messages[currentmessage]);
+			currentmessage++;
+		}
+		currentmessage--;
+		return currentmessage;
 	}
 	
 	/**
@@ -21,7 +30,7 @@ class ChatService {
 	 * @param message the message to add to the chat
 	 */
 	void putChatMessage(ChatMessage message){
-		//TODO: implement me
+		messages.add(message);
 	}
 	
 	

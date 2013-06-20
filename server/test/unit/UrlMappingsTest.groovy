@@ -1,5 +1,3 @@
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import chat.kata.ChatController;
@@ -10,7 +8,7 @@ class UrlMappingsTest {
 
 	@Test
 	public void testChatListURLMapping() {
-		fail "Not implemented yet"	
+		assertRestForwardUrlMapping("GET", "/api/chat", controller:"chat", action:"list")
 	}
 
 	/* ------------------- helper methods -- */
