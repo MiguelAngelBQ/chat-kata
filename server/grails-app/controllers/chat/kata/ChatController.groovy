@@ -9,7 +9,7 @@ class ChatController {
 	
 	def list(Integer seq) {
 
-		
+		//terminado
 		if(!hasErrors()){
 			final Collection<ChatMessage> msgs = [];
 			final int salida = chatService.collectChatMessages(msgs, seq);
