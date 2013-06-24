@@ -5,6 +5,11 @@ class ChatMessage {
 	String nick
 	String message
 
+	static constraints = {
+		nick blank: false
+		message blank: false
+	}
+	
 	int hash(){
 		return Objects.hash(nick, message)
 	}
