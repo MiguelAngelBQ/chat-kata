@@ -6,34 +6,32 @@ import org.springframework.validation.Errors;
 
 class ChatController {
 	ChatService chatService
-	
-	def list(Integer seq) {
 
-		//terminado
-		if(!hasErrors()){
-			final Collection<ChatMessage> msgs = [];
-			final int salida = chatService.collectChatMessages(msgs, seq);
-			render(contentType: "text/json") {
-				messages=[]
-				for(i in 0..msgs.size()-1){
-					messages.add(nick:msgs[i].nick,message:msgs[i].message);
-				}
-				last_seq = salida
+	def list(Integer seq) {
+		if(hasErrors()){
+			render(status: 400, contentType: "text/json") { error = "Invalid seq parameter" }
+			return
+		}
+		final List chatMessages = []
+		final int nextMessage = chatService.collectChatMessages(chatMessages, seq)
+		render(contentType: "text/json") {
+			messages = []
+			for(currentMessage in chatMessages){
+				messages.add([nick:currentMessage.nick, message:currentMessage.message])
 			}
-		}else{		
-			render(status: 400, contentType: "text/json") {error = "Invalid seq parameter"}
+			last_seq = nextMessage
 		}
 	}
 
 	def send(){
-		
+
 		if(!request.JSON){
 			render(status: 400, contentType: "text/json") {error = "Invalid body"}
 		}else{
 			ChatMessage msgs = new ChatMessage(request.JSON)
 			msgs.validate()
 			if(msgs.validate()){
-				chatService.putChatMessage(msgs)					
+				chatService.putChatMessage(msgs)
 				render(status: 201)
 			}else{
 				render(status: 400, contentType: "text/json") {
@@ -42,7 +40,7 @@ class ChatController {
 					else if(msgs.errors.hasFieldErrors("message"))
 						error = "Missing message parameter"
 				}
-			}		
-		}	
+			}
+		}
 	}
 }

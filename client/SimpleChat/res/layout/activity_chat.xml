@@ -1,6 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,4 +10,79 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ChatActivity" >
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="volver"
+        android:text="Volver" />
+
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnEnviar"
+        android:layout_alignBottom="@+id/btnEnviar"
+        android:layout_alignRight="@+id/btnVolver"
+        android:onClick="actualizar"
+        android:text="Actualizar" />
+
+    <Button
+        android:id="@+id/btnEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnVolver"
+        android:layout_marginTop="226dp"
+        android:onClick="enviar"
+        android:text="Enviar" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnActualizar"
+        android:layout_alignLeft="@+id/btnEnviar"
+        android:layout_alignRight="@+id/btnActualizar"
+        android:layout_below="@+id/btnVolver" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/txtListaMensajes"
+                android:layout_width="match_parent"
+                android:layout_height="219dp"
+                android:ems="10"
+                android:inputType="textPostalAddress" >
+
+                <requestFocus />
+            </EditText>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/txtMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnEnviar"
+        android:layout_alignRight="@+id/btnActualizar"
+        android:layout_below="@+id/btnEnviar"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/lblIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnVolver"
+        android:layout_alignBottom="@+id/btnVolver"
+        android:layout_alignLeft="@+id/scrollView1"
+        android:layout_toLeftOf="@+id/btnVolver"
+        android:textSize="@dimen/Etiq" />
+
+</RelativeLayout>
