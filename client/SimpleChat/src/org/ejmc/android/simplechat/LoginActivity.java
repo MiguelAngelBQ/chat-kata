@@ -40,9 +40,12 @@ public class LoginActivity extends Activity{
 	}
 	
 	public void ejecutar(View view) {
+		
         Intent i = new Intent(this, ChatActivity.class );
         i.putExtra("nick", txtNick.getText().toString());
         i.putExtra("ip", txtIP.getText().toString());
+        txtNick.setText("");
+        txtIP.setText("");
         startActivity(i);
    }
 }
